@@ -21,7 +21,7 @@ void setup(){
 void draw(){
   fill(152,178,222);
   rect(100,100,400,400);
-   for (int i = 100; i<=500; i+=100) {
+   for (int i = 100; i<=500; i=i+100) {
     smooth();
     strokeWeight(3);
     line(100, i, 500, i);
