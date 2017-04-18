@@ -1,7 +1,12 @@
 int rows=4;
 int cols=4;
+char up='w';
+char down='s';
+char right='d';
+char left='a';
 float squareSize=100;
-Square[][] Squares;
+
+
 
 
 
@@ -14,8 +19,8 @@ void setup(){
   fill(140,222,114);
   text("Press 'space' to reset game", 95, 580);
   textSize(50);
-  text("2048", 50, 50);
-  Squares = new Square[4][4];
+  text("2048", 240, 50);
+  
   
 }
 void draw(){
@@ -27,11 +32,16 @@ void draw(){
     line(100, i, 500, i);
     line(i, 100, i, 500);
   }
-  
-  
+
+   
+
 }
 void keyPressed() {
   if (key == ' ') {
     setup();
+  }
+  if( key==left){
+
+  
   }
 }

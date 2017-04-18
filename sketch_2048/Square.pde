@@ -1,13 +1,18 @@
 
 class Square{
-  float x=0;
-  float y=0;
-  float squareSize= 10;
-  
+  int start = 100;
+  int stop = 500;
+  int loop = 0;
+  boolean appear = false;
 
-  void draw(){
-  fill(150);
-  rect(0,0,width,height,10);
+  void square() {
+    rect(start, start, 400, 400);
+    for (int i = start; i<=stop; i=i+100) {
+      smooth();
+      strokeWeight(3);
+      line(start, i, stop, i);
+      line(i, start, i, stop);
+    }
 
-}
+  }
 }
