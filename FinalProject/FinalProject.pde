@@ -6,7 +6,7 @@ char right='d';
 char left='a';
 float squareSize=100;
 ArrayList<Square> squares=new ArrayList<Square>();
-
+long 
 
 
 
@@ -28,23 +28,33 @@ void draw(){
   rect(100,100,400,400);
    for (int i = 100; i<=500; i=i+100) {
     smooth();
-    strokeWeight(3);
+    strokeWeight(5);
     stroke(255);
     line(100, i, 500, i);
     line(i, 100, i, 500);
+    // Square Spawn
     for(int j=0; j<squares.size();j++){
       squares.get(j).squareDisplay();
     
     }
   }
+  //to-do: to control the squares move up
 
+   //to-do: to control the squares move down
    
+   //to-do: to control the squares move left
+   
+   // to-do: to control the squares move right
 
 }
+
+
 void keyPressed() {
+  // to restart the game
   if (key == ' ') {
     setup();
   }
+  //control the Squares
   if( key==left && key==right){
 
   
