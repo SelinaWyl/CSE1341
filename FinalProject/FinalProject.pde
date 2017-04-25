@@ -1,3 +1,5 @@
+PImage img;
+PImage icon;
 int rows=4;
 int cols=4;
 char up='w';
@@ -8,22 +10,28 @@ float squareSize=100;
 String winText = "You won!";
 
 Square[][] squares= new Square[rows][cols];
-
+ ArrayList<Square> cList = new ArrayList<Square>();
 
 
 void setup(){
   // the background
+  img=loadImage("background.jpg");
+  //icon=loadImage("2048.jpg");
   size(600,600);
    background(255);
-  textSize(30);
-  fill(125,227,117);
-  text("Press 'space' to reset game", 95, 580);
-  textSize(50);
-  text("2048", 240, 50);
+  
   
   
 }
 void draw(){
+  image(img,0,0);
+  textSize(35);
+  fill(0);
+  text("Press 'space' to reset game", 95, 580);
+  //image(icon,500,0);
+  fill(255);
+  textSize(50);
+  text("2048",240,70);
   fill(245,232,91);
   rect(100,100,400,400);
    for (int i = 100; i<=500; i=i+100) {
