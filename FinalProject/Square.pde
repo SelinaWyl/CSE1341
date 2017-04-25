@@ -9,8 +9,9 @@ class Square{
   boolean appear = false;
   
   
-   Square(int x, int y, int r, int c){
+   Square(int x, int y, int r, int c,int v){
     number = 2;
+    value=v;
     startCoor= x;
     stopCoor= y;
     row= r;
@@ -25,7 +26,7 @@ class Square{
     fill(255);
     rect(startCoor,stopCoor, 100, 100);
     fill(0);
-   
+    
       
    }
    void squareDisappear(){
