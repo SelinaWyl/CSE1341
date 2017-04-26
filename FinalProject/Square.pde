@@ -24,6 +24,7 @@ class Square{
 // Square spawn
   void squareDisplay() {
     fill(240,98,41);
+    
     rect(xCoor,yCoor, 100, 100);
     fill(255);
     text(value,xCoor+45,yCoor+55);

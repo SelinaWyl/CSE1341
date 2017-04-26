@@ -1,3 +1,10 @@
+import ddf.minim.*;
+import ddf.minim.analysis.*;
+import ddf.minim.effects.*;
+import ddf.minim.signals.*;
+import ddf.minim.spi.*;
+import ddf.minim.ugens.*;
+
 PImage img;
 PImage icon;
 int rows=4;
@@ -9,9 +16,11 @@ char left='a';
 float squareSize=100;
 String winText = "You won!";
 
-Square[][] squares= new Square[rows][cols];
-ArrayList<Square> cList = new ArrayList<Square>();
+//Square[][] squares= new Square[rows][cols];
+ArrayList<Square> squares = new ArrayList<Square>();
 
+Minim m;
+AudioPlayer backgroundMusic;
 
 void setup() {
   // the background
@@ -31,6 +40,9 @@ void setup() {
   stroke(125, 227, 117);
   strokeWeight(3);
   rect(90, 90, 420, 420);
+  m= new Minim(this);
+  backgroundMusic= m.loadFile("Joy Gruttmann-Schnappi.mp3");
+  backgroundMusic.play();
 }
 void draw() {
   for (int i = 100; i<=500; i=i+100) {
@@ -43,6 +55,12 @@ void draw() {
 
 
   // square spawn
+
+// squares.add(new Square());
+
+for(int j=squares.size()-1;j>=0;j--){
+  squares.get(j).squareDisplay();
+}
 }
 
 
