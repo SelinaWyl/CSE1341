@@ -1,6 +1,6 @@
 class Square{
-  int startCoor = 100;
-  int stopCoor = 500;
+  int xCoor = 100;
+  int yCoor = 500;
   int loop = 0;
   int number =0;
   int row =0;
@@ -12,8 +12,8 @@ class Square{
    Square(int x, int y, int r, int c,int v){
     number = 2;
     value=v;
-    startCoor= x;
-    stopCoor= y;
+    xCoor= x;
+    yCoor= y;
     row= r;
     column = c;
     
@@ -23,15 +23,20 @@ class Square{
   
 // Square spawn
   void squareDisplay() {
+    fill(240,98,41);
+    rect(xCoor,yCoor, 100, 100);
     fill(255);
-    rect(startCoor,stopCoor, 100, 100);
-    fill(0);
+    text(value,xCoor+45,yCoor+55);
+    
     
       
    }
    void squareDisappear(){
      value=0;
    }
-    
+   //to add value on the square
+    void value(){
+      
+    }
   
     }
