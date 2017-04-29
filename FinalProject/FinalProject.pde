@@ -15,10 +15,15 @@ char right='d';
 char left='a';
 float squareSize=100;
 String winText = "You won!";
+String loseText="You Lose !";
+
 
 //Square[][] squares= new Square[rows][cols];
 ArrayList<Square> squares = new ArrayList<Square>();
+  
 
+
+// Add background music
 Minim m;
 AudioPlayer backgroundMusic;
 
@@ -53,15 +58,18 @@ void draw() {
     line(i, 100, i, 500);
   }
 
-
-  // square spawn
-
+   squares.add(new Square());
+      
+  
+   // squares spawn
+   for(int i = squares.size()-1;i>=0;i--){
+     squares.get(i).squareDisplay();
+   }
+}
+     
 // squares.add(new Square());
 
-for(int j=squares.size()-1;j>=0;j--){
-  squares.get(j).squareDisplay();
-}
-}
+
 
 
 
