@@ -25,8 +25,12 @@ class Square{
     
   }
 void squareDisplay(){
-  fill(255);
+  //int xCoor=int(random(100,400));
+  //int yCoor=int(random(100,400));
+  
+  fill(255,179,131);
   rect(xCoor, yCoor, 100,100);
+ 
 }
  
    void squareDisappear(){
@@ -36,5 +40,18 @@ void squareDisplay(){
     void value(){
       
     }
-  
+  void squaresMoveRight(){
+    fill(255,179,131);
+    if(xCoor<400){
+    rect(xCoor,yCoor,100,100);
+    xCoor=xCoor+100;
     }
+  }
+    void squaresMoveLeft(){
+    if (xCoor<400){
+      fill(255);
+      rect(xCoor,yCoor,100,100);
+      xCoor=xCoor-100;
+  }
+    }
+}

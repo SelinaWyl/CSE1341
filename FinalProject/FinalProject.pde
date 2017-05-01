@@ -58,17 +58,26 @@ void draw() {
     line(i, 100, i, 500);
   }
 
+
    squares.add(new Square());
       
   
    // squares spawn
    for(int i = squares.size()-1;i>=0;i--){
      squares.get(i).squareDisplay();
+    
    }
-}
-     
-// squares.add(new Square());
+   
+    if (key==right){
+      for(int r=squares.size()-1;r>=0;r--){
+        squares.get(r).squaresMoveRight();
+      }
+       
+    }
+    
+  // println(
 
+}
 
 
 
