@@ -7,8 +7,8 @@ import ddf.minim.ugens.*;
 
 PImage img;
 PImage icon;
-int xCoor;
-int yCoor;
+int xCoor=100;
+int yCoor=100;
 int rows=4;
 int cols=4;
 char up='w';
@@ -18,11 +18,11 @@ char left='a';
 float squareSize=100;
 String winText = "You won!";
 String loseText="You Lose !";
-Square squares[];
+ArrayList<Square> squares= new ArrayList<Square>();
 int numSquares;
 int squareChange=100;
 boolean merge= true;
-
+int value=2;
 
 
 // Add background music
@@ -30,7 +30,7 @@ Minim m;
 AudioPlayer backgroundMusic;
 
 void setup() {
-    
+
   // the background
   img=loadImage("background.jpg");
   size(600, 600);
@@ -52,10 +52,8 @@ void setup() {
   m= new Minim(this);
   backgroundMusic= m.loadFile("Joy Gruttmann-Schnappi.mp3");
   backgroundMusic.play();
-  squares = new Square[14];
-  for (int i = 0; i<14; i++) {
-    squares[i] = new Square();
-    
+  for (int i=0; i<14; i++) {
+    squares.add(new Square());
   }
 }
 
@@ -75,12 +73,9 @@ void draw() {
   strokeWeight(3);
   rect(90, 90, 420, 420);
   //merge
- for (int i = 0; i<14; i++) { 
-if (squares[i].merge(squares[i])){
- fill(255);
- rect(xCoor,yCoor,100,100);
-}
-}
+  for (int i = squares.size()-1; i<14; i++) { 
+    squares.get(i).merge(squares.get(i));
+  }
   for (int i = 100; i<=500; i=i+100) {
     smooth();
     strokeWeight(5);
@@ -90,19 +85,13 @@ if (squares[i].merge(squares[i])){
   }
 
   // squares spawn
+ for (int i = 0; i < numSquares; i++) {
 
-
-
-  for (int i = 0; i < numSquares; i++) {
-   
-    squares[i].squareDisplay();
-   
+    squares.get(i).squareDisplay();
   }
+//check if suquares merge, spawn a new one
+
 }
-
-
-
-
 
 
 void resetGame() {
@@ -132,7 +121,7 @@ void resetGame() {
 
 
 void keyPressed() {
-  
+
   // to restart the game
   if (key == ' ') {
     resetGame();
@@ -140,25 +129,22 @@ void keyPressed() {
   //to-do: to control the squares move up
   if (key== right) {
     for (int i = 0; i < numSquares; i++) {
-      squares[i]. squaresMoveRight();
+      squares.get(i). squaresMoveRight();
     }
   }
-    if (key==left) {
-      for (int i = 0; i < numSquares; i++) {
-       squares[i]. squaresMoveLeft();
-      
-      }
+  if (key==left) {
+    for (int i = 0; i < numSquares; i++) {
+      squares.get(i). squaresMoveLeft();
     }
-      if (key==up) {
-        for (int i=0; i<numSquares; i++) {
-          squares[i].squaresMoveTop();
-        }
-      }
-        if (key==down) {
-          for (int i=0; i<numSquares; i++) {
-            squares[i].squaresMoveDown();
-          }
-        }
-        
-      }
-    
+  }
+  if (key==up) {
+    for (int i=0; i<numSquares; i++) {
+      squares.get(i). squaresMoveTop();
+    }
+  }
+  if (key==down) {
+    for (int i=0; i<numSquares; i++) {
+      squares.get(i). squaresMoveDown();
+    }
+  }
+}

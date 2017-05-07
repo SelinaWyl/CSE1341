@@ -1,6 +1,6 @@
 class Square {
-  int xCoor = 100;
-  int yCoor = 500;
+  int x= 100;
+  int y = 500;
   int loop = 0;
   int number =0;
   int row =0;
@@ -13,7 +13,8 @@ class Square {
   int yIndex;
   int squarelength=100;
   int squareChange=100;
-
+  color col;
+  
   Square() {
     xCoor=100;
     yCoor=100;
@@ -25,74 +26,76 @@ class Square {
       xValues[i] = 100 + (i* (100));
       yValues[i] = 100 + (i* (100));
     }
-    xCoor = xValues[xIndex];
-    yCoor = yValues[yIndex];
+    x = xValues[xIndex];
+    y = yValues[yIndex];
+    col=color(255, 179, 131);
   }
 
-  Square(int x, int y, int r, int c, int l) {
+  Square(int xCoor, int yCoor, int r, int c, int l) {
     this.number = 2;
-    this.xCoor= x;
-    this.yCoor= y;
+    this.x= xCoor;
+    this.y= yCoor;
     this. row= r;
     this.column = c;
     this.squarelength=l;
     //random 0 - 3
     xIndex =int(random(0, 3));
     yIndex =int(random(0, 3));
-    xCoor = xValues[xIndex];
-    yCoor = yValues[yIndex];
+    x = xValues[xIndex];
+    y = yValues[yIndex];
   }
-  boolean merge(Square other) {
-    float d= dist(xCoor, yCoor, other.xCoor, other.yCoor);
-    if (d<squarelength-other.squarelength) {
-      return true;
+  // merge
+  void merge(Square other) {
+    float d= dist(x, y, other.x, other.y);
+    if (d<squarelength + other.squarelength) {
+      other.col= color(255,179,100);
     } else {
-
-      return false;
+      other.col=color(255,179,131);
+      
     }
   }
   void squareDisplay() {
-    fill(255, 179, 131);
-    rect(xCoor, yCoor, 100, 100);
+    fill(col);
+    rect(x, y, 100, 100);
     fill(255);
-    text("2", xCoor+35, yCoor+70);
+    text("2", x+35, y+70);
   }
   //to add value to the square
   void value() {
     fill(255);
-    text("2", xCoor+35, yCoor+70);
+    text("2", x+35, y+70);
   }
   
 
 
 
   void squaresMoveRight() {
-    if (xCoor<400) {
+    if (x<400) {
       fill(255, 179, 131);
-      rect(xCoor, yCoor, 100, 100); 
-      xCoor=xCoor+squareChange;
+      rect(x, y, 100, 100); 
+      x=x+squareChange;
     }
   }
   void squaresMoveLeft() {
-    if (xCoor>100) {
+    if (x>100) {
       fill(255, 179, 131);
-      rect(xCoor, yCoor, 100, 100);
-      xCoor=xCoor-squareChange;
+      rect(x, y, 100, 100);
+      x=x-squareChange;
     }
   }
 
   void squaresMoveTop() {
-    if (yCoor>100) {
+    if (y>100) {
       fill(255, 179, 131);
-      rect(xCoor, yCoor, 100, 100);
-      yCoor=yCoor-squareChange;
+      rect(x, y, 100, 100);
+      y=y-squareChange;
     }
   }
   void squaresMoveDown() {
-    if (yCoor<400) {
+    if (y<400) {
       fill(255, 179, 131);
-      rect(xCoor, yCoor, 100, 100);
-      yCoor=yCoor+squareChange;
+      rect(x, y, 100, 100);
+      y=y+squareChange;
     }
   }
 }
