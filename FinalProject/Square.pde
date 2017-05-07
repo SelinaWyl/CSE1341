@@ -11,6 +11,8 @@ class Square {
   int[] yValues = new int[4];
   int xIndex;
   int yIndex;
+  int squarelength=100;
+  int squareChange=100;
 
   Square() {
     xCoor=100;
@@ -27,72 +29,70 @@ class Square {
     yCoor = yValues[yIndex];
   }
 
-  Square(int x, int y, int r, int c) {
+  Square(int x, int y, int r, int c, int l) {
     this.number = 2;
     this.xCoor= x;
     this.yCoor= y;
     this. row= r;
     this.column = c;
+    this.squarelength=l;
     //random 0 - 3
     xIndex =int(random(0, 3));
     yIndex =int(random(0, 3));
     xCoor = xValues[xIndex];
     yCoor = yValues[yIndex];
   }
+  boolean merge(Square other) {
+    float d= dist(xCoor, yCoor, other.xCoor, other.yCoor);
+    if (d<squarelength-other.squarelength) {
+      return true;
+    } else {
 
+      return false;
+    }
+  }
   void squareDisplay() {
     fill(255, 179, 131);
     rect(xCoor, yCoor, 100, 100);
+    fill(255);
+    text("2", xCoor+35, yCoor+70);
   }
   //to add value to the square
   void value() {
     fill(255);
     text("2", xCoor+35, yCoor+70);
   }
-
-void squaresCollide(){
-  while(
   
-}
 
 
 
   void squaresMoveRight() {
-
-    fill(255, 179, 131);
-    if (xCoor>100) {
-      for(xCoor=0;xCoor<400;xCoor=xCoor+100){
-      rect(xCoor, yCoor, 100, 100);
-     
-      }
+    if (xCoor<400) {
+      fill(255, 179, 131);
+      rect(xCoor, yCoor, 100, 100); 
+      xCoor=xCoor+squareChange;
     }
-    
   }
   void squaresMoveLeft() {
-    if (xCoor<400) {
-      for(xCoor=0;xCoor<100;xCoor=xCoor-100){
-      fill(255,179,131);
+    if (xCoor>100) {
+      fill(255, 179, 131);
       rect(xCoor, yCoor, 100, 100);
-      
-      }
+      xCoor=xCoor-squareChange;
     }
   }
+
   void squaresMoveTop() {
-    if(yCoor<400){
-      for(yCoor=0;yCoor>100;yCoor=yCoor-100){
-      fill(255,179,131);
-      rect(xCoor,yCoor,100,100);
-      
-    }
+    if (yCoor>100) {
+      fill(255, 179, 131);
+      rect(xCoor, yCoor, 100, 100);
+      yCoor=yCoor-squareChange;
     }
   }
   void squaresMoveDown() {
-    if (yCoor<400 ) {
-      for(yCoor=0;yCoor<400;yCoor=yCoor+100){
+    if (yCoor<400) {
       fill(255, 179, 131);
       rect(xCoor, yCoor, 100, 100);
-  
-      }
+      yCoor=yCoor+squareChange;
     }
   }
 }

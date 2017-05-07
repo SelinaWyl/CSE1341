@@ -7,8 +7,8 @@ import ddf.minim.ugens.*;
 
 PImage img;
 PImage icon;
-int xCoor=100;
-int yCoor=500;
+int xCoor;
+int yCoor;
 int rows=4;
 int cols=4;
 char up='w';
@@ -20,10 +20,8 @@ String winText = "You won!";
 String loseText="You Lose !";
 Square squares[];
 int numSquares;
-
-
-
-
+int squareChange=100;
+boolean merge= true;
 
 
 
@@ -32,6 +30,7 @@ Minim m;
 AudioPlayer backgroundMusic;
 
 void setup() {
+    
   // the background
   img=loadImage("background.jpg");
   size(600, 600);
@@ -53,9 +52,10 @@ void setup() {
   m= new Minim(this);
   backgroundMusic= m.loadFile("Joy Gruttmann-Schnappi.mp3");
   backgroundMusic.play();
-  squares = new Square[8];
-  for (int i = 0; i<8; i++) {
+  squares = new Square[14];
+  for (int i = 0; i<14; i++) {
     squares[i] = new Square();
+    
   }
 }
 
@@ -74,7 +74,13 @@ void draw() {
   stroke(125, 227, 117);
   strokeWeight(3);
   rect(90, 90, 420, 420);
-
+  //merge
+ for (int i = 0; i<14; i++) { 
+if (squares[i].merge(squares[i])){
+ fill(255);
+ rect(xCoor,yCoor,100,100);
+}
+}
   for (int i = 100; i<=500; i=i+100) {
     smooth();
     strokeWeight(5);
@@ -85,14 +91,16 @@ void draw() {
 
   // squares spawn
 
-  //int x = xCoor;
-  //int y = yCoor;
+
 
   for (int i = 0; i < numSquares; i++) {
+   
     squares[i].squareDisplay();
-    squares[i].value();
+   
   }
 }
+
+
 
 
 
@@ -124,6 +132,7 @@ void resetGame() {
 
 
 void keyPressed() {
+  
   // to restart the game
   if (key == ' ') {
     resetGame();
@@ -136,7 +145,8 @@ void keyPressed() {
   }
     if (key==left) {
       for (int i = 0; i < numSquares; i++) {
-        squares[i]. squaresMoveLeft();
+       squares[i]. squaresMoveLeft();
+      
       }
     }
       if (key==up) {
@@ -152,4 +162,3 @@ void keyPressed() {
         
       }
     
-  
