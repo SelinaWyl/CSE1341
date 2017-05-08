@@ -7,12 +7,13 @@ class Square {
   int column =0;
   int value;
   boolean appear = false;
+  boolean change=false;
   int[] xValues = new int[4];
   int[] yValues = new int[4];
   int xIndex;
   int yIndex;
   int squarelength=100;
-  int squareChange=100;
+  int coorChange=100;
   color col;
   
   Square() {
@@ -35,7 +36,7 @@ class Square {
     this.number = 2;
     this.x= xCoor;
     this.y= yCoor;
-    this. row= r;
+    this.row= r;
     this.column = c;
     this.squarelength=l;
     this.value=Val;
@@ -68,21 +69,23 @@ class Square {
     text("2", x+35, y+70);
   }
   
-
+void delete() {
+  val=0;
+}
 
 
   void squaresMoveRight() {
     if (x<400) {
       fill(255, 179, 131);
       rect(x, y, 100, 100); 
-      x=x+squareChange;
+      x=x+coorChange;
     }
   }
   void squaresMoveLeft() {
     if (x>100) {
       fill(255, 179, 131);
       rect(x, y, 100, 100);
-      x=x-squareChange;
+      x=x-coorChange;
     }
   }
 
@@ -90,14 +93,14 @@ class Square {
     if (y>100) {
       fill(255, 179, 131);
       rect(x, y, 100, 100);
-      y=y-squareChange;
+      y=y-coorChange;
     }
   }
   void squaresMoveDown() {
     if (y<400) {
       fill(255, 179, 131);
       rect(x, y, 100, 100);
-      y=y+squareChange;
+      y=y+coorChange;
     }
   }
 }
