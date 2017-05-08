@@ -147,10 +147,11 @@ void keyPressed() {
 
   // to control the squares move left
   if (key==left) {
+   /* for (int i = 0; i < numSquares; i++) {
+      squares.get(i). squaresMoveLeft();
+    }*/
     for (int i = 0; i < numSquares; i++) {
       squares.get(i). squaresMoveLeft();
-    }
-    for (int i = 0; i < numSquares; i++) {
       for (int j = 0; j < numSquares; j++) {
         if (i != j) {
           if (squares.get(i).x == squares.get(j).x && squares.get(i).y == squares.get(j).y) {
