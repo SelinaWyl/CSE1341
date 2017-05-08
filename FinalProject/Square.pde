@@ -31,13 +31,15 @@ class Square {
     col=color(255, 179, 131);
   }
 
-  Square(int xCoor, int yCoor, int r, int c, int l) {
+  Square(int xCoor, int yCoor, int r, int c, int l,int Val) {
     this.number = 2;
     this.x= xCoor;
     this.y= yCoor;
     this. row= r;
     this.column = c;
     this.squarelength=l;
+    this.value=Val;
+    
     //random 0 - 3
     xIndex =int(random(0, 3));
     yIndex =int(random(0, 3));
@@ -45,12 +47,12 @@ class Square {
     y = yValues[yIndex];
   }
   // merge
-  void merge(Square other) {
+  void merge(Square other) {    
     float d= dist(x, y, other.x, other.y);
     if (d<squarelength + other.squarelength) {
       other.col= color(255,179,100);
     } else {
-      other.col=color(255,179,131);
+      other.col=color(255);
       
     }
   }

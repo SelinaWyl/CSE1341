@@ -22,8 +22,8 @@ ArrayList<Square> squares= new ArrayList<Square>();
 int numSquares;
 int squareChange=100;
 boolean merge= true;
-int value=2;
-
+int val;
+Square square[][];
 
 // Add background music
 Minim m;
@@ -90,9 +90,46 @@ void draw() {
     squares.get(i).squareDisplay();
   }
 //check if suquares merge, spawn a new one
-
+for(int j=squares.size()-1;j<=14;j++){
+   squares.add(new Square());
+  squares.get(j).squareDisplay();
 }
-
+ /*for(int n=squares.size()-1;n>=0;n--){
+   
+   if(squares.get(n).merge(Square other)){
+     squares.remove(n);
+   }
+   
+  }
+  */
+}
+boolean gameOver(){
+  
+  for(int i=0;i<4;i++){
+  for(int j=0;j<4;j++){
+    if(square[j][i].val==0)
+      return false;
+    if(j>0)
+      if(square[j][i].val==square[j-1][i].val)
+        return false; 
+    if(i>0)
+      if(square[j][i].val==square[j][i-1].val)
+        return false; 
+    if(i<3)
+      if(square[j][i].val==square[j][i+1].val)
+        return false;
+    if(j<3)
+      if(square[j][i].val==square[j+1][i].val)
+        return false;         
+  }
+  }
+  fill(255);
+  stroke(255);
+  text(loseText,300,300);
+  println("Game over");
+  return true;
+  
+}
 
 void resetGame() {
   img=loadImage("background.jpg");
@@ -135,6 +172,7 @@ void keyPressed() {
   if (key==left) {
     for (int i = 0; i < numSquares; i++) {
       squares.get(i). squaresMoveLeft();
+      
     }
   }
   if (key==up) {
