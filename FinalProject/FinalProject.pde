@@ -22,7 +22,7 @@ ArrayList<Square> squares= new ArrayList<Square>();
 int numSquares;
 int squareChange=100;
 boolean merge= true;
-Square square[][];
+//Square square[][];
 
 // Add background music
 Minim m;
@@ -51,7 +51,7 @@ void setup() {
   m= new Minim(this);
   backgroundMusic= m.loadFile("Joy Gruttmann-Schnappi.mp3");
   backgroundMusic.play();
-  for (int i=0; i<14; i++) {
+  for (int i=0; i<numSquares; i++) {
     squares.add(new Square());
   }
 }
@@ -73,9 +73,12 @@ void draw() {
   strokeWeight(3);
   rect(90, 90, 420, 420);
   //merge
-  for (int i = squares.size()-1; i<14; i++) { 
-    squares.get(i).merge(squares.get(i));
+  for (int i = 0; i < numSquares; i++) {
+    squares.get(i).squareDisplay();
   }
+  /*for (int i = squares.size()-1; i<14; i++) { 
+   squares.get(i).merge(squares.get(i));
+   }*/
   for (int i = 100; i<=500; i=i+100) {
     smooth();
     strokeWeight(5);
@@ -89,6 +92,8 @@ void draw() {
 
     squares.get(i).squareDisplay();
   }
+
+
   //check if suquares merge, spawn a new one
   for (int j=squares.size()-1; j<=14; j++) {
     squares.add(new Square());
@@ -103,112 +108,92 @@ void draw() {
    }
    */
 }
+
+
 // check if the palyer lose the game
-boolean gameOver() {
 
-  for (int r=0; r<4; r++) {
-    for (int c=0; c<4; c++) {
-      if (square[r][c].value==0)
-        return false;
-      if (c>0)
-        if (square[r][c].value==square[r-1][c].value)
-          return false; 
-      if (r>0)
-        if (square[r][c].value==square[r][c-1].value)
-          return false; 
-      if (r<3)
-        if (square[r][c].value==square[r][c+1].value)
-          return false;
-      if (c<3)
-        if (square[r][c].value==square[r+1][c].value)
-          return false;
-    }
-  }
-  fill(255);
-  stroke(255);
-  text(loseText, 300, 300);
-  println("Game over");
-  return true;
-}
+
 // to reset the game
-void resetGame() {
-  img=loadImage("background.jpg");
-  size(600, 600);
-  background(255);
-  image(img, 0, 0);
-  textSize(35);
-  fill(255);
-  text("Press 'space' to reset game", 75, 580);
-  fill(255);
-  textSize(50);
-  text("2048", 240, 70);
-  fill(245, 232, 91);
-  rect(100, 100, 400, 400);
-  fill(255, 255, 255, 0);
-  stroke(125, 227, 117);
-  strokeWeight(3);
-  rect(90, 90, 420, 420);
-  m= new Minim(this);
-  backgroundMusic= m.loadFile("Joy Gruttmann-Schnappi.mp3");
-  backgroundMusic.play();
-}
-
-
+/*void resetGame() {
+ img=loadImage("background.jpg");
+ size(600, 600);
+ background(255);
+ image(img, 0, 0);
+ textSize(35);
+ fill(255);
+ text("Press 'space' to reset game", 75, 580);
+ fill(255);
+ textSize(50);
+ text("2048", 240, 70);
+ fill(245, 232, 91);
+ rect(100, 100, 400, 400);
+ fill(255, 255, 255, 0);
+ stroke(125, 227, 117);
+ strokeWeight(3);
+ rect(90, 90, 420, 420);
+ m= new Minim(this);
+ backgroundMusic= m.loadFile("Joy Gruttmann-Schnappi.mp3");
+ backgroundMusic.play();
+ }
+ 
+ */
 
 void keyPressed() {
 
   // to restart the game
   if (key == ' ') {
-    resetGame();
+    //resetGame();
   }
- 
+
   // to control the squares move left
   if (key==left) {
     for (int i = 0; i < numSquares; i++) {
       squares.get(i). squaresMoveLeft();
-      boolean merge = true;
-      int changes=0;
-      while (merge) {
-        merge=false;
-        for (int r=0; r<4; r++) {
-          for (int c=1; c<4; c++) {    
-            if (square[r][c].value!=0 && square[r][c].value==square[r-1][c].value && !square[r][c].merge && !square[r-1][c].merge) {               
-              square[r-1][c].value*=2;     
-                square[r][c].delete();
-              square[r-1][c].merge=true;
-              merge=true;
-              changes++;
-            } else if (square[r][c].value!=0 && square[r-1][c].value==0) {       
-              square[r-1][c].value=square[r][c].value;
-              square[r][c].delete();
-              println(r + "," + c + "moved left");
-              merge=true;
-              changes++;
+    }
+    for (int i = 0; i < numSquares; i++) {
+      for (int j = 0; j < numSquares; j++) {
+        if (i != j) {
+          if (squares.get(i).x == squares.get(j).x && squares.get(i).y == squares.get(j).y) {
+            //delete j
+            if (squares.get(i).value == squares.get(j).value) {
+              squares.get(j).reset();
+              while (squares.get(z).x == squares.get(j).x && squares.get(z).y == squares.get(j).y)
+                squares.get(j).reset();
+              squares.get(i).merge();
+            } else {
+              
             }
           }
         }
       }
-       squares.get(i).squareDisplay();
-      return changes;
+    }
+
+
+    // to control the squares move right
+    if (key== right) {
+      for (int i = 0; i < numSquares; i++) {
+        squares.get(i). squaresMoveRight();
+      }
+    }
+    // to control the squares move up
+    if (key==up) {
+      for (int i=0; i<numSquares; i++) {
+        squares.get(i). squaresMoveTop();
+      }
+    }
+    // to control the squares move down
+    if (key==down) {
+      for (int i=0; i<numSquares; i++) {
+        squares.get(i). squaresMoveDown();
+      }
     }
   }
 
- // to control the squares move right
-  if (key== right) {
-    for (int i = 0; i < numSquares; i++) {
-      squares.get(i). squaresMoveRight();
+  void drawNewSquare() {
+    numSquares++;
+    squares.add(new Square());
+    for (int i = 0; i < numSquares -1; i++) {
+      while (squares.get(numSquares-1).x == squares.get(i).x && squares.get(numSquares-1).y == squares.get(i).y)
+        squares.get(numSquares-1).reset();
     }
   }
-// to control the squares move up
-if (key==up) {
-  for (int i=0; i<numSquares; i++) {
-    squares.get(i). squaresMoveTop();
-  }
-}
-// to control the squares move down
-if (key==down) {
-  for (int i=0; i<numSquares; i++) {
-    squares.get(i). squaresMoveDown();
-  }
-}
-}

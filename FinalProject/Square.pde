@@ -15,8 +15,9 @@ class Square {
   int squarelength=100;
   int coorChange=100;
   color col;
-  
+
   Square() {
+    value = 2;
     xCoor=100;
     yCoor=100;
     row=1;
@@ -32,7 +33,7 @@ class Square {
     col=color(255, 179, 131);
   }
 
-  Square(int xCoor, int yCoor, int r, int c, int l,int Val) {
+  Square(int xCoor, int yCoor, int r, int c, int l, int Val) {
     this.number = 2;
     this.x= xCoor;
     this.y= yCoor;
@@ -40,7 +41,7 @@ class Square {
     this.column = c;
     this.squarelength=l;
     this.value=Val;
-    
+
     //random 0 - 3
     xIndex =int(random(0, 3));
     yIndex =int(random(0, 3));
@@ -48,29 +49,34 @@ class Square {
     y = yValues[yIndex];
   }
   // merge
-  void merge(Square other) {    
-    float d= dist(x, y, other.x, other.y);
-    if (d<squarelength + other.squarelength) {
-      other.col= color(255,179,100);
-    } else {
-      other.col=color(255);
-      
-    }
+  void merge() {    
+    //  float d= dist(x, y, other.x, other.y);
+    //if (d<squarelength + other.squarelength) {
+    col= color(255, 179, 100);
+    //} else {
+    //other.col=color(255);
+    value = value*2;
   }
   void squareDisplay() {
     fill(col);
     rect(x, y, 100, 100);
     fill(255);
-    text("2", x+35, y+70);
+    text(value, x+35, y+70);
   }
   //to add value to the square
   void value() {
     fill(255);
-    text("2", x+35, y+70);
+    text(value, x+35, y+70);
   }
+
+void reset(){
+    xIndex =int(random(0, 3));
+    yIndex =int(random(0, 3));
+    x = xValues[xIndex];
+    y = yValues[yIndex];
+    col=color(255, 179, 131);
+    value=2;
   
-void delete() {
-  val=0;
 }
 
 
