@@ -8,6 +8,7 @@ class Square {
   int value;
   boolean appear = false;
   boolean change=false;
+  boolean moved = false;
   int[] xValues = new int[4];
   int[] yValues = new int[4];
   int xIndex;
@@ -58,6 +59,7 @@ class Square {
     value = value*2;
   }
   void squareDisplay() {
+    moved = false;
     fill(col);
     rect(x, y, 100, 100);
     fill(255);
@@ -85,6 +87,7 @@ void reset(){
       fill(255, 179, 131);
       rect(x, y, 100, 100); 
       x=x+coorChange;
+      moved = true;
     }
   }
   void squaresMoveLeft() {
@@ -92,6 +95,7 @@ void reset(){
       fill(255, 179, 131);
       rect(x, y, 100, 100);
       x=x-coorChange;
+      moved = true;
     }
   }
 
@@ -100,6 +104,7 @@ void reset(){
       fill(255, 179, 131);
       rect(x, y, 100, 100);
       y=y-coorChange;
+      moved = true;
     }
   }
   void squaresMoveDown() {
@@ -107,6 +112,7 @@ void reset(){
       fill(255, 179, 131);
       rect(x, y, 100, 100);
       y=y+coorChange;
+      moved = true;
     }
   }
 }
