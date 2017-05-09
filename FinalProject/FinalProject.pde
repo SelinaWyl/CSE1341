@@ -1,3 +1,13 @@
+/*
+CSE1341
+Yilin Wen
+Final Project
+May 09 2017
+
+*/
+
+
+
 import ddf.minim.*;
 import ddf.minim.analysis.*;
 import ddf.minim.effects.*;
